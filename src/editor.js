@@ -149,6 +149,7 @@ function cleanEditorHtml(options) {
 
   cm.operation(() => cm.setValue(result.html));
   cm.save();
+  cm.getTextArea().dispatchEvent(new Event('input', { bubbles: true }));
   cm.refresh();
   log('Tistory HTML 정리 완료');
   console.table(result.changes);
