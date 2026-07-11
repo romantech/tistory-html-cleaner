@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import monkey from 'vite-plugin-monkey';
-import { userscriptVersion } from './version.js';
+import {userscriptVersion} from './version.js';
 
 const baseUrl = 'https://romantech.github.io/tistory-html-cleaner';
 
@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'Tistory HTML Cleaner',
         namespace: 'https://romantech.net/',
         version: userscriptVersion,
-        description: '티스토리 에디터 HTML 정리 및 모드 전환 유틸',
+        description: '티스토리 에디터 HTML 정리',
         homepageURL: 'https://github.com/romantech/tistory-html-cleaner',
         source: 'https://github.com/romantech/tistory-html-cleaner',
         match: [
