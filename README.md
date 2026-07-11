@@ -4,9 +4,13 @@
 
 ## 설치
 
-[userscript 설치](https://romantech.github.io/tistory-html-cleaner/tistory-html-cleaner.user.js)
+- [Tampermonkey](https://www.tampermonkey.net/) 브라우저 확장기능이 설치되어 있어야 합니다. 
+- 설치 링크: [userscript](https://romantech.github.io/tistory-html-cleaner/tistory-html-cleaner.user.js)
 
-한 번 설치하면 Tampermonkey가 원격 메타데이터의 버전을 확인하고 업데이트합니다.
+## 사용 방법
+
+1. 티스토리 글쓰기 에디터창 진입
+2. 크롬
 
 ## 정리 항목
 
