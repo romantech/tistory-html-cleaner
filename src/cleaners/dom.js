@@ -4,7 +4,8 @@ export const all = (root, selector) => [...root.querySelectorAll(selector)];
 export const toChange = (type, count) => (count > 0 ? { type, count } : null);
 
 export function createContainer(html) {
-  return new DOMParser().parseFromString(`<body>${html}</body>`, 'text/html').body;
+  return new DOMParser().parseFromString(`<body>${html}</body>`, 'text/html')
+    .body;
 }
 
 export function unwrap(element) {
@@ -16,9 +17,8 @@ export function unwrap(element) {
 export function collectTextNodes(root, predicate) {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const nodes = [];
-  let current;
-
-  while ((current = walker.nextNode())) {
+  let current = walker.nextNode();
+  while (current) {
     const node = /** @type {Text} */ (current);
     const text = node.nodeValue ?? '';
     const isImageShortcode =
@@ -31,6 +31,8 @@ export function collectTextNodes(root, predicate) {
     ) {
       nodes.push(node);
     }
+
+    current = walker.nextNode();
   }
 
   return nodes;

@@ -13,7 +13,9 @@ async function runCleanCommand(options = DEFAULT_CLEAN_OPTIONS) {
 
   const result = await enterHtmlModeAndClean(options);
   const summary = result.changes
-    .map(({ type, count }) => `- ${CLEAN_OPTION_LABEL[type] ?? type}: ${count}개`)
+    .map(
+      ({ type, count }) => `- ${CLEAN_OPTION_LABEL[type] ?? type}: ${count}개`,
+    )
     .join('\n');
 
   alert(
@@ -25,7 +27,7 @@ async function runCleanCommand(options = DEFAULT_CLEAN_OPTIONS) {
   );
 }
 
-GM_registerMenuCommand('전체', () => runCleanCommand());
+GM_registerMenuCommand('전체 정리', () => runCleanCommand());
 
 for (const option of Object.values(CLEAN_OPTION)) {
   GM_registerMenuCommand(CLEAN_OPTION_LABEL[option], () =>

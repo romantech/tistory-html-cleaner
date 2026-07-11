@@ -21,10 +21,13 @@ export function sanitizeAnchorAttributes(container) {
     try {
       const url = new URL(href, location.href);
       isExternalHttpLink =
-        ['http:', 'https:'].includes(url.protocol) && url.origin !== location.origin;
+        ['http:', 'https:'].includes(url.protocol) &&
+        url.origin !== location.origin;
     } catch {}
 
-    const rel = new Set((link.getAttribute('rel') ?? '').split(/\s+/).filter(Boolean));
+    const rel = new Set(
+      (link.getAttribute('rel') ?? '').split(/\s+/).filter(Boolean),
+    );
     const shouldFixTarget =
       isExternalHttpLink && link.getAttribute('target') !== '_blank';
     const shouldFixRel =

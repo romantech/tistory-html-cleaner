@@ -3,7 +3,7 @@ import { all, toChange } from './dom.js';
 
 function stripStyle(container, selector, type) {
   const elements = all(container, selector);
-  elements.forEach((element) => element.removeAttribute('style'));
+  for (const element of elements) element.removeAttribute('style');
   return toChange(type, elements.length);
 }
 

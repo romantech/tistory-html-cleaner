@@ -1,6 +1,6 @@
-import { DEFAULT_CLEAN_OPTIONS, LOG_PREFIX } from './constants.js';
-import { CLEANERS } from './cleaners/index.js';
 import { createContainer } from './cleaners/dom.js';
+import { CLEANERS } from './cleaners/index.js';
+import { DEFAULT_CLEAN_OPTIONS, LOG_PREFIX } from './constants.js';
 
 const warn = (...args) => console.warn(LOG_PREFIX, ...args);
 
