@@ -19,7 +19,11 @@ export default defineConfig({
           'https://*.tistory.com/manage/newpost*',
           'https://*.tistory.com/manage/post*',
         ],
-        grant: ['GM_registerMenuCommand', 'unsafeWindow'],
+        grant: [
+          'GM_registerMenuCommand',
+          'GM.registerMenuCommand',
+          'unsafeWindow',
+        ],
         'run-at': 'document-idle',
         noframes: true,
         updateURL: `${baseUrl}/tistory-html-cleaner.meta.js`,
