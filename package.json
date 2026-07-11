@@ -1,0 +1,16 @@
+{
+  "name": "tistory-editor-cleaner",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "pnpm build && node scripts/check-build.js"
+  },
+  "devDependencies": {
+    "vite": "^8.1.4",
+    "vite-plugin-monkey": "^8.0.6"
+  }
+}
