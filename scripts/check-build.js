@@ -1,10 +1,11 @@
 import { readFile } from 'node:fs/promises';
+import { userscriptVersion } from '../version.js';
 
 const script = await readFile('dist/tistory-editor-cleaner.user.js', 'utf8');
 const meta = await readFile('dist/tistory-editor-cleaner.meta.js', 'utf8');
 
 for (const [key, value] of [
-  ['version', '1.2.0'],
+  ['version', userscriptVersion],
   ['grant', 'GM_registerMenuCommand'],
   ['grant', 'unsafeWindow'],
   ['sandbox', 'raw'],

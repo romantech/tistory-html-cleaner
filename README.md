@@ -19,7 +19,7 @@ pnpm dev
 
 ## 배포
 
-`package.json`의 `version`을 올리고 `main` 브랜치에 푸시합니다. GitHub Actions가 빌드 결과를 GitHub Pages에 배포합니다.
+`main` 브랜치에 푸시하면 GitHub Actions가 빌드 번호를 patch 버전으로 사용하고 GitHub Pages에 배포합니다. 예를 들어 `package.json`이 `1.2.0`이고 빌드 번호가 `3`이면 userscript 버전은 `1.2.3`이 됩니다. major 또는 minor 버전을 올릴 때만 `package.json`을 변경합니다.
 
 ```sh
 pnpm check
