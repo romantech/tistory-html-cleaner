@@ -2,7 +2,8 @@ import { defineConfig } from 'vite';
 import monkey from 'vite-plugin-monkey';
 import { userscriptVersion } from './version.js';
 
-const baseUrl = 'https://romantech.github.io/tistory-editor-cleaner';
+const baseUrl =
+  'https://github.com/romantech/tistory-editor-cleaner/releases/latest/download';
 
 export default defineConfig({
   plugins: [
