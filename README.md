@@ -5,9 +5,7 @@
 ## 설치 방법
 
 1. [Tampermonkey](https://www.tampermonkey.net/) 또는 [Greasemonkey](https://www.greasespot.net/) 브라우저 확장 프로그램을 설치합니다.
-2. 아래 링크에서 스크립트를 설치합니다.
-   - [Greasy Fork](https://greasyfork.org/ko/scripts/586596-tistory-html-cleaner)
-   - [GitHub](https://romantech.github.io/tistory-html-cleaner/tistory-html-cleaner.user.js)
+2. [Greasy Fork](https://greasyfork.org/ko/scripts/586596-tistory-html-cleaner)에서 스크립트를 설치합니다.
 
 ## 사용 방법
 
@@ -15,7 +13,7 @@
 2. 브라우저 도구 모음에서 Tampermonkey 또는 Greasemonkey 아이콘을 클릭합니다.
 3. 메뉴에서 원하는 정리 항목을 선택합니다. 정리 항목을 실행하면 에디터가 자동으로 HTML 모드로 전환되며, 정리 작업이 끝나면 다시 원래 편집 모드로 돌아갑니다.
 
-![유저 스크립트 정리 기능 메뉴](docs/tampermonkey-menu.png)
+![유저 스크립트 정리 기능 메뉴](https://raw.githubusercontent.com/romantech/tistory-html-cleaner/main/docs/tampermonkey-menu.png)
 
 ## 주요 기능
 
