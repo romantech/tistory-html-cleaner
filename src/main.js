@@ -25,10 +25,10 @@ async function runCleanCommand(options = DEFAULT_CLEAN_OPTIONS) {
   );
 }
 
-GM_registerMenuCommand('Tistory 정리 · 전체', () => runCleanCommand());
+GM_registerMenuCommand('전체', () => runCleanCommand());
 
 for (const option of Object.values(CLEAN_OPTION)) {
-  GM_registerMenuCommand(`Tistory 정리 · ${CLEAN_OPTION_LABEL[option]}`, () =>
+  GM_registerMenuCommand(CLEAN_OPTION_LABEL[option], () =>
     runCleanCommand([option]),
   );
 }
