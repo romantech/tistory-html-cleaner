@@ -14,6 +14,7 @@ export default defineConfig({
         version: userscriptVersion,
         description: '티스토리 에디터 HTML 정리 및 모드 전환 유틸',
         homepageURL: 'https://github.com/romantech/tistory-editor-cleaner',
+        source: 'https://github.com/romantech/tistory-editor-cleaner',
         match: [
           'https://*.tistory.com/manage/newpost*',
           'https://*.tistory.com/manage/post*',

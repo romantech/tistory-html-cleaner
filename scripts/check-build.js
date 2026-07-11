@@ -10,6 +10,7 @@ for (const [key, value] of [
   ['grant', 'unsafeWindow'],
   ['sandbox', 'raw'],
   ['homepageURL', 'https://github.com/romantech/tistory-editor-cleaner'],
+  ['source', 'https://github.com/romantech/tistory-editor-cleaner'],
   ['updateURL', 'https://romantech.github.io/tistory-editor-cleaner/tistory-editor-cleaner.meta.js'],
   ['downloadURL', 'https://romantech.github.io/tistory-editor-cleaner/tistory-editor-cleaner.user.js'],
 ]) {
