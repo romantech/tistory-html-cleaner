@@ -22,8 +22,13 @@ async function waitFor(check, { timeout = 2500, interval = 50 } = {}) {
   return false;
 }
 
+function findCodeMirror() {
+  const element = document.querySelector('.CodeMirror');
+  return element?.CodeMirror ?? element?.wrappedJSObject?.CodeMirror ?? null;
+}
+
 function getCodeMirror() {
-  const cm = document.querySelector('.CodeMirror')?.CodeMirror;
+  const cm = findCodeMirror();
   if (!cm) warn('CodeMirror 인스턴스를 찾지 못함');
   return cm ?? null;
 }
@@ -151,11 +156,10 @@ function cleanEditorHtml(options) {
 }
 
 export async function waitUntilReady(options = {}) {
-  const ready = await waitFor(
-    () =>
-      !!getModeButton() && !!document.querySelector('.CodeMirror')?.CodeMirror,
-    { ...WAIT_CONFIG.READY, ...options },
-  );
+  const ready = await waitFor(() => !!getModeButton() && !!findCodeMirror(), {
+    ...WAIT_CONFIG.READY,
+    ...options,
+  });
   if (!ready) warn('에디터 준비 타임아웃');
   return ready;
 }

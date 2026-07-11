@@ -5,6 +5,11 @@ import {
 } from './constants.js';
 import { enterHtmlModeAndClean, waitUntilReady } from './editor.js';
 
+const registerMenuCommand =
+  typeof GM_registerMenuCommand === 'function'
+    ? GM_registerMenuCommand
+    : GM.registerMenuCommand;
+
 async function runCleanCommand(options = DEFAULT_CLEAN_OPTIONS) {
   if (!(await waitUntilReady())) {
     alert('티스토리 에디터가 준비되지 않았습니다.');
@@ -27,10 +32,10 @@ async function runCleanCommand(options = DEFAULT_CLEAN_OPTIONS) {
   );
 }
 
-GM_registerMenuCommand('전체 정리', () => runCleanCommand());
+registerMenuCommand('전체 정리', () => runCleanCommand());
 
 for (const option of Object.values(CLEAN_OPTION)) {
-  GM_registerMenuCommand(CLEAN_OPTION_LABEL[option], () =>
+  registerMenuCommand(CLEAN_OPTION_LABEL[option], () =>
     runCleanCommand([option]),
   );
 }
