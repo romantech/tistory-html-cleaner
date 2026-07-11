@@ -15,6 +15,9 @@ export function sanitizeAnchorAttributes(container) {
 
     const hadStyle = link.hasAttribute('style');
     const hadClass = link.hasAttribute('class');
+    const vueScopeAttributes = link
+      .getAttributeNames()
+      .filter((name) => name.startsWith('data-v-'));
     const href = link.getAttribute('href') ?? '';
     let isExternalHttpLink = false;
 
@@ -33,10 +36,18 @@ export function sanitizeAnchorAttributes(container) {
     const shouldFixRel =
       isExternalHttpLink && (!rel.has('noopener') || !rel.has('noreferrer'));
 
-    if (!hadStyle && !hadClass && !shouldFixTarget && !shouldFixRel) continue;
+    if (
+      !hadStyle &&
+      !hadClass &&
+      !vueScopeAttributes.length &&
+      !shouldFixTarget &&
+      !shouldFixRel
+    )
+      continue;
 
     link.removeAttribute('style');
     link.removeAttribute('class');
+    for (const name of vueScopeAttributes) link.removeAttribute(name);
 
     if (isExternalHttpLink) {
       rel.add('noopener');
