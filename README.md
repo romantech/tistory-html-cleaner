@@ -1,10 +1,10 @@
-# Tistory Editor Cleaner
+# Tistory HTML Cleaner
 
 티스토리 에디터의 HTML을 정리하는 Tampermonkey userscript입니다.
 
 ## 설치
 
-[userscript 설치](https://romantech.github.io/tistory-editor-cleaner/tistory-editor-cleaner.user.js)
+[userscript 설치](https://romantech.github.io/tistory-html-cleaner/tistory-html-cleaner.user.js)
 
 한 번 설치하면 Tampermonkey가 원격 메타데이터의 버전을 확인하고 업데이트합니다.
 
