@@ -1,6 +1,6 @@
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 import monkey from 'vite-plugin-monkey';
-import {userscriptVersion} from './version.js';
+import { userscriptVersion } from './version.js';
 
 const baseUrl = 'https://romantech.github.io/tistory-html-cleaner';
 

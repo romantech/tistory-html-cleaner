@@ -4,7 +4,9 @@ import { collectTextNodes, toChange } from './dom.js';
 export function wrapBacktickCode(container) {
   let count = 0;
 
-  for (const node of collectTextNodes(container, (text) => text.includes('`'))) {
+  for (const node of collectTextNodes(container, (text) =>
+    text.includes('`'),
+  )) {
     const text = node.nodeValue ?? '';
     const matches = [...text.matchAll(/`([^`\n]+?)`/g)];
     if (!matches.length || !node.parentNode) continue;
@@ -17,7 +19,8 @@ export function wrapBacktickCode(container) {
       const [fullMatch, codeText] = match;
       const start = match.index ?? 0;
       const end = start + fullMatch.length;
-      if ((text[start - 1] ?? '') === '`' || (text[end] ?? '') === '`') continue;
+      if ((text[start - 1] ?? '') === '`' || (text[end] ?? '') === '`')
+        continue;
 
       if (start > lastIndex) fragment.append(text.slice(lastIndex, start));
       const code = document.createElement('code');

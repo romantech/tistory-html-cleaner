@@ -13,7 +13,9 @@ async function runCleanCommand(options = DEFAULT_CLEAN_OPTIONS) {
 
   const result = await enterHtmlModeAndClean(options);
   const summary = result.changes
-    .map(({ type, count }) => `- ${CLEAN_OPTION_LABEL[type] ?? type}: ${count}개`)
+    .map(
+      ({ type, count }) => `- ${CLEAN_OPTION_LABEL[type] ?? type}: ${count}개`,
+    )
     .join('\n');
 
   alert(

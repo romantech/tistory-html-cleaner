@@ -12,7 +12,9 @@ export function fixHttpLinks(container) {
     }
   }
 
-  for (const node of collectTextNodes(container, (text) => /http:\/\//i.test(text))) {
+  for (const node of collectTextNodes(container, (text) =>
+    /http:\/\//i.test(text),
+  )) {
     const before = node.nodeValue ?? '';
     count += before.match(/http:\/\//gi)?.length ?? 0;
     node.nodeValue = before.replace(/http:\/\//gi, 'https://');

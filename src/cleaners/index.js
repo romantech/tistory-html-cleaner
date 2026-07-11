@@ -4,16 +4,12 @@ import { normalizeSmartQuotes } from './normalize-smart-quotes.js';
 import { replaceNbsp } from './replace-nbsp.js';
 import { sanitizeAnchorAttributes } from './sanitize-anchor-attributes.js';
 import {
-  stripBlockquotes,
-  stripDivs,
-  stripSpans,
-} from './strip-tags.js';
-import {
   stripCodeStyles,
   stripHeadingStyles,
   stripParagraphStyles,
   stripPreStyles,
 } from './strip-styles.js';
+import { stripBlockquotes, stripDivs, stripSpans } from './strip-tags.js';
 import { wrapBacktickCode } from './wrap-backtick-code.js';
 
 export const CLEANERS = Object.freeze({

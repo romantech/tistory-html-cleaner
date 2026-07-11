@@ -7,9 +7,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "check": "pnpm build && node scripts/check-build.js"
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check . && pnpm build && node scripts/check-build.js"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.3",
     "vite": "^8.1.4",
     "vite-plugin-monkey": "^8.0.6"
   }

@@ -1,3 +1,4 @@
+import { runCleanPipeline } from './cleaner.js';
 import {
   DEFAULT_CLEAN_OPTIONS,
   EDITOR_MODE,
@@ -5,7 +6,6 @@ import {
   MODE_SELECTOR,
   WAIT_CONFIG,
 } from './constants.js';
-import { runCleanPipeline } from './cleaner.js';
 
 const log = (...args) => console.log(LOG_PREFIX, ...args);
 const warn = (...args) => console.warn(LOG_PREFIX, ...args);
@@ -37,9 +37,11 @@ function getModeMenuItems() {
 }
 
 function readCurrentMode() {
-  return document
-    .querySelector('.mce-menu-item.mce-menu-active .mce-text')
-    ?.textContent?.trim() ?? '';
+  return (
+    document
+      .querySelector('.mce-menu-item.mce-menu-active .mce-text')
+      ?.textContent?.trim() ?? ''
+  );
 }
 
 async function openModeMenu() {
@@ -150,7 +152,8 @@ function cleanEditorHtml(options) {
 
 export async function waitUntilReady(options = {}) {
   const ready = await waitFor(
-    () => !!getModeButton() && !!document.querySelector('.CodeMirror')?.CodeMirror,
+    () =>
+      !!getModeButton() && !!document.querySelector('.CodeMirror')?.CodeMirror,
     { ...WAIT_CONFIG.READY, ...options },
   );
   if (!ready) warn('에디터 준비 타임아웃');
@@ -187,7 +190,9 @@ export async function enterHtmlModeAndClean(
   Object.assign(result, cleanResult, { currentMode: EDITOR_MODE.HTML });
 
   if (restoreOriginalMode && originalMode !== EDITOR_MODE.HTML) {
-    const restored = await changeEditorMode(originalMode, { suppressConfirm: true });
+    const restored = await changeEditorMode(originalMode, {
+      suppressConfirm: true,
+    });
     result.currentMode = restored.currentMode;
     if (!restored.success) result.success = false;
   } else {
