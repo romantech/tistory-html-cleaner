@@ -5,19 +5,21 @@ export function sanitizeAnchorAttributes(container) {
   let changedCount = 0;
 
   for (const link of all(container, 'a[href]')) {
+    const vueScopeAttributes = link
+      .getAttributeNames()
+      .filter((name) => name.startsWith('data-v-'));
+
     if (link.classList.contains('btn-toggle-moreless')) {
-      if (link.hasAttribute('style')) {
-        link.removeAttribute('style');
-        changedCount += 1;
-      }
+      if (!link.hasAttribute('style') && !vueScopeAttributes.length) continue;
+
+      link.removeAttribute('style');
+      for (const name of vueScopeAttributes) link.removeAttribute(name);
+      changedCount += 1;
       continue;
     }
 
     const hadStyle = link.hasAttribute('style');
     const hadClass = link.hasAttribute('class');
-    const vueScopeAttributes = link
-      .getAttributeNames()
-      .filter((name) => name.startsWith('data-v-'));
     const href = link.getAttribute('href') ?? '';
     let isExternalHttpLink = false;
 
