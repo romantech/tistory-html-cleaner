@@ -50,6 +50,8 @@ function readCurrentMode() {
 }
 
 async function openModeMenu() {
+  if (getModeMenuItems().length > 0) return true;
+
   const button = getModeButton();
   if (!button) {
     warn('모드 메뉴 버튼을 찾지 못함');
@@ -196,17 +198,21 @@ export async function enterHtmlModeAndClean(
     return result;
   }
 
-  const cleanResult = cleanEditorHtml(options);
-  Object.assign(result, cleanResult, { currentMode: EDITOR_MODE.HTML });
-
-  if (restoreOriginalMode && originalMode !== EDITOR_MODE.HTML) {
-    const restored = await changeEditorMode(originalMode, {
-      suppressConfirm: true,
-    });
-    result.currentMode = restored.currentMode;
-    if (!restored.success) result.success = false;
-  } else {
-    result.currentMode = await getCurrentEditorMode();
+  result.currentMode = EDITOR_MODE.HTML;
+  try {
+    Object.assign(result, cleanEditorHtml(options));
+  } catch (error) {
+    warn('HTML 정리 중 오류:', error);
+  } finally {
+    if (restoreOriginalMode && originalMode !== EDITOR_MODE.HTML) {
+      const restored = await changeEditorMode(originalMode, {
+        suppressConfirm: true,
+      });
+      result.currentMode = restored.currentMode;
+      if (!restored.success) result.success = false;
+    } else {
+      result.currentMode = await getCurrentEditorMode();
+    }
   }
 
   return result;

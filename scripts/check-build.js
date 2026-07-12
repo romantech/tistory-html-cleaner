@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
+import { sanitizeAnchorAttributes } from '../src/cleaners/sanitize-anchor-attributes.js';
 import { userscriptVersion } from '../version.js';
 
 const script = await readFile('dist/tistory-html-cleaner.user.js', 'utf8');
@@ -44,6 +45,25 @@ for (const manager of ['Tampermonkey', 'Greasemonkey']) {
   if (!commands.includes('전체 정리')) {
     throw new Error(`${manager} 메뉴 등록 실패`);
   }
+}
+
+const attributes = new Set(['href', 'class', 'style', 'data-v-test']);
+const toggleLink = {
+  classList: { contains: (name) => name === 'btn-toggle-moreless' },
+  getAttributeNames: () => [...attributes],
+  hasAttribute: (name) => attributes.has(name),
+  removeAttribute: (name) => attributes.delete(name),
+};
+const change = sanitizeAnchorAttributes({
+  querySelectorAll: () => [toggleLink],
+});
+if (
+  change?.count !== 1 ||
+  !attributes.has('class') ||
+  attributes.has('style') ||
+  attributes.has('data-v-test')
+) {
+  throw new Error('토글 링크 속성 정리 실패');
 }
 
 console.log('userscript build metadata: ok');
