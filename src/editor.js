@@ -37,15 +37,17 @@ function getModeButton() {
   return document.querySelector('#editor-mode-layer-btn-open');
 }
 
-function getModeMenuItems() {
-  return document.querySelectorAll('.mce-menu-item');
+export function getModeMenuItems() {
+  return Object.values(MODE_SELECTOR)
+    .map((selector) => document.querySelector(selector))
+    .filter(Boolean);
 }
 
-function readCurrentMode() {
+export function readCurrentMode() {
   return (
-    document
-      .querySelector('.mce-menu-item.mce-menu-active .mce-text')
-      ?.textContent?.trim() ?? ''
+    Object.entries(MODE_SELECTOR).find(([, selector]) =>
+      document.querySelector(`${selector}.mce-menu-active`),
+    )?.[0] ?? ''
   );
 }
 

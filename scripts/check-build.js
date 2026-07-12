@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import { sanitizeAnchorAttributes } from '../src/cleaners/sanitize-anchor-attributes.js';
+import { EDITOR_MODE, MODE_SELECTOR } from '../src/constants.js';
+import { getModeMenuItems, readCurrentMode } from '../src/editor.js';
 import { userscriptVersion } from '../version.js';
 
 const script = await readFile('dist/tistory-html-cleaner.user.js', 'utf8');
@@ -65,5 +67,29 @@ if (
 ) {
   throw new Error('토글 링크 속성 정리 실패');
 }
+
+const modeItem = {};
+const unrelatedMenuItem = {};
+globalThis.document = {
+  querySelector: (selector) => {
+    if (selector === MODE_SELECTOR[EDITOR_MODE.DEFAULT]) return modeItem;
+    if (`${MODE_SELECTOR[EDITOR_MODE.DEFAULT]}.mce-menu-active` === selector) {
+      return modeItem;
+    }
+    if (selector === '.mce-menu-item.mce-menu-active .mce-text') {
+      return { textContent: '글꼴' };
+    }
+    return null;
+  },
+  querySelectorAll: (selector) =>
+    selector === '.mce-menu-item' ? [unrelatedMenuItem] : [],
+};
+if (
+  getModeMenuItems()[0] !== modeItem ||
+  readCurrentMode() !== EDITOR_MODE.DEFAULT
+) {
+  throw new Error('에디터 모드 메뉴 범위 확인 실패');
+}
+delete globalThis.document;
 
 console.log('userscript build metadata: ok');
