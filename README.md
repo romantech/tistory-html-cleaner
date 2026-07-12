@@ -27,3 +27,17 @@
 - 외부 링크에 보안 속성 추가
 
 `전체 정리`를 실행하면 `blockquote` 태그 제거를 제외한 모든 항목을 적용합니다.
+
+## 변환 예시
+
+정리 전
+
+```html
+<p data-ke-size="size16"><a style="background-color: #1c1d1f; color: #ec9f19; text-align: start;" href="https://namu.wiki/w/%EB%AC%B8%EC%84%9C" data-v-456e3d4b="">문서</a><span style="background-color: #1c1d1f; color: #e0e0e0; text-align: start;"><span>&nbsp;</span>디자인에 의미가 있는 글을 담으면 사람들은 양식을 보지 않고 글의 내용에 집중하는 경향이 있다.</span></p>
+```
+
+정리 후
+
+```html
+<p data-ke-size="size16"><a href="https://namu.wiki/w/%EB%AC%B8%EC%84%9C" target="_blank" rel="noopener noreferrer">문서</a> 디자인에 의미가 있는 글을 담으면 사람들은 양식을 보지 않고 글의 내용에 집중하는 경향이 있다.</p>
+```
